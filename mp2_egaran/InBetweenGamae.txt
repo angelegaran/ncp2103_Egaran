@@ -1,0 +1,58 @@
+import javax.swing.JOptionPane;
+import java.text.DecimalFormat;
+
+public class InBetweenGame {
+    public static void main(String[] args) {
+        DecimalFormat df = new DecimalFormat("#.00");
+        boolean playAgain = true;
+
+        while (playAgain) {
+            double pocketMoney = 1000.00;
+            boolean gameActive = true;
+
+            while (gameActive && pocketMoney > 0) {
+                int lowerBound = 1 + (int) (Math.random() * 10);
+                int upperBound = lowerBound + (int) (Math.random() * 10);
+
+                String input = JOptionPane.showInputDialog(
+                        "Your current pocket money: PHP " + df.format(pocketMoney) +
+                                "\nGuess the number between " + lowerBound + " and " + upperBound +
+                                "\nEnter your bet (or 'exit' to quit this game):");
+
+                if (input == null || input.equalsIgnoreCase("exit")) {
+                    // User clicked Cancel or entered 'exit'
+                    gameActive = false;
+                } else {
+                    try {
+                        double bet = Double.parseDouble(input);
+                        if (bet > pocketMoney || bet <= 0) {
+                            JOptionPane.showMessageDialog(null, "Invalid bet amount. Please enter a valid bet.");
+                        } else {
+                            int randomNumber = lowerBound + 1 + (int) (Math.random() * 8);
+                            JOptionPane.showMessageDialog(null, "The random number is: " + randomNumber);
+
+                            if (randomNumber > lowerBound && randomNumber < upperBound) {
+                                pocketMoney += bet;
+                                JOptionPane.showMessageDialog(null, "Congratulations! You won PHP " + df.format(bet) + "\nNew pocket money: PHP " + df.format(pocketMoney));
+                            } else {
+                                pocketMoney -= bet;
+                                JOptionPane.showMessageDialog(null, "Sorry, you lost PHP " + df.format(bet) + "\nNew pocket money: PHP " + df.format(pocketMoney));
+                            }
+                        }
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
+                    }
+                }
+            }
+
+            if (pocketMoney <= 0) {
+                JOptionPane.showMessageDialog(null, "You've run out of pocket money. Game over!");
+            }
+
+            int choice = JOptionPane.showConfirmDialog(null, "Do you want to play again?", "Play Again", JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.NO_OPTION) {
+                playAgain = false;
+            }
+        }
+    }
+}
