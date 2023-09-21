@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class MobileNetworkIdentifier {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a 11-digit mobile number: ");
+        String mobileNumber = scanner.nextLine();
+
+        if (mobileNumber.length() != 11) {
+            System.out.println("Error: Invalid mobile number length.");
+        } else {
+            String prefix = mobileNumber.substring(0, 4); // Change this if your prefixes have different lengths
+            String network = identifyNetwork(prefix);
+
+            if (network != null) {
+                System.out.println("Mobile Network: " + network);
+            } else {
+                System.out.println("Network not found for the given prefix.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    public static String identifyNetwork(String prefix) {
+        switch (prefix) {
+            case "0905":
+            case "0906":
+            case "0915":
+            case "0916":
+            case "0917":
+                return "Globe/TM";
+            case "0907":
+            case "0908":
+            case "0909":
+            case "0910":
+            case "0912":
+                return "Smart/TNT";
+            case "0929":
+            case "0923":
+            case "0924":
+            case "0925":
+            case "0933":
+                return "Smart";
+            // Add more cases for other prefixes
+            default:
+                return "other";
+        }
+    }
+}
