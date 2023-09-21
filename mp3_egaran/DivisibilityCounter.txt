@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class DivisibilityCounter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the start number: ");
+        int start = scanner.nextInt();
+
+        System.out.print("Enter the end number: ");
+        int end = scanner.nextInt();
+
+        int countDivisibleBy2 = 0;
+        int countDivisibleBy3 = 0;
+        int countDivisibleByBoth = 0;
+
+        for (int i = start; i <= end; i++) {
+            if (i % 2 == 0) {
+                countDivisibleBy2++;
+            }
+            if (i % 3 == 0) {
+                countDivisibleBy3++;
+            }
+            if (i % 2 == 0 && i % 3 == 0) {
+                countDivisibleByBoth++;
+            }
+        }
+
+        System.out.println("Count of numbers divisible by 2: " + countDivisibleBy2);
+        System.out.println("Count of numbers divisible by 3: " + countDivisibleBy3);
+        System.out.println("Count of numbers divisible by both 2 and 3: " + countDivisibleByBoth);
+    }
+}
