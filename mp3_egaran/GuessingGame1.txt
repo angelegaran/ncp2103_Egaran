@@ -1,0 +1,51 @@
+import javax.swing.JOptionPane;
+
+public class GuessingGame {
+
+    public static void main(String[] args) {
+        // Generate a random number
+        int number = (int)(Math.random() * 10);
+
+        // Initialize the number of tries
+        int tries = 0;
+
+        // Loop until the user guesses the number correctly
+        while (true) {
+            // Get the user's guess
+            String guess = JOptionPane.showInputDialog("Guess a number between 0 and 10: ");
+
+            // Convert the guess to an integer
+            int guessedNumber = Integer.parseInt(guess);
+
+            // Check if the guess is correct
+            if (guessedNumber == number) {
+                // The user guessed correctly
+                break;
+            } else {
+                // The guess is incorrect
+                tries++;
+
+                // Display a message to the user
+                if (guessedNumber < number) {
+                    JOptionPane.showMessageDialog(null, "Your guess is lower.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Your guess is higher.");
+                }
+            }
+        }
+
+        // Display the number of tries and the player's rank
+        String rank;
+        if (tries == 1) {
+            rank = "Pro";
+        } else if (tries <= 4) {
+            rank = "Expert";
+        } else if (tries <= 6) {
+            rank = "Beginner";
+        } else {
+            rank = "Novice";
+        }
+
+        JOptionPane.showMessageDialog(null, "You guessed the number correctly in " + tries + " tries! Your rank is " + rank + ".");
+    }
+}
