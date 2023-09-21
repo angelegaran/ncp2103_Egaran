@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class FuelCostCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the distance to drive (kilometers): ");
+        double distance = scanner.nextDouble();
+
+        System.out.print("Enter the fuel efficiency of the car (kilometers per gallon): ");
+        double fuelEfficiency = scanner.nextDouble();
+
+        System.out.print("Enter the price per gallon: ");
+        double pricePerGallon = scanner.nextDouble();
+
+        // Calculate gallons needed for the trip
+        double gallonsNeeded = distance / fuelEfficiency;
+
+        // Calculate the cost of the trip
+        double tripCost = gallonsNeeded * pricePerGallon;
+
+        System.out.println("The cost of the trip is: " + tripCost);
+
+        scanner.close();
+    }
+}
