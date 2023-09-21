@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class TipCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input subtotal and tip rate
+        System.out.print("Enter the subtotal bill: P");
+        double subtotal = scanner.nextDouble();
+
+        System.out.print("Enter the tip rate (%) : ");
+        double tipRate = scanner.nextDouble();
+
+        // Calculate tip amount and total bill
+        double tipAmount = (tipRate / 100) * subtotal;
+        double totalBill = subtotal + tipAmount;
+
+        // Display the results
+        System.out.println("Tip Amount: P" + tipAmount);
+        System.out.println("Total Bill: P" + totalBill);
+
+        scanner.close();
+    }
+}
