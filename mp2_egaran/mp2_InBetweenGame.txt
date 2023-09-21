@@ -1,0 +1,49 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class InBetweenGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        System.out.println("Welcome to the In-Between Game!");
+
+        int card1 = random.nextInt(13) + 1; // Random card value between 1 and 13
+        int card2 = random.nextInt(13) + 1;
+
+        System.out.println("Card 1: " + card1);
+        System.out.println("Card 2: " + card2);
+
+        // Handling the case of same cards
+        if (card1 == card2) {
+            System.out.print("The two cards are the same. Choose 'HIGHER' or 'LOWER': ");
+            String choice = scanner.next();
+
+            int thirdCard = random.nextInt(13) + 1;
+
+            if ((choice.equalsIgnoreCase("HIGHER") && thirdCard > card1) ||
+                    (choice.equalsIgnoreCase("LOWER") && thirdCard < card1)) {
+                System.out.println("Card 3: " + thirdCard);
+                System.out.println("Congratulations! You win!");
+            } else {
+                System.out.println("Card 3: " + thirdCard);
+                System.out.println("Sorry, you lose.");
+            }
+        } else {
+            System.out.print("Choose 'DEAL' or 'NO DEAL': ");
+            String dealChoice = scanner.next();
+
+            int thirdCard = random.nextInt(13) + 1;
+
+            if ((thirdCard > Math.min(card1, card2)) && (thirdCard < Math.max(card1, card2))) {
+                System.out.println("Card 3: " + thirdCard);
+                System.out.println("Congratulations! You win!");
+            } else {
+                System.out.println("Card 3: " + thirdCard);
+                System.out.println("Sorry, you lose.");
+            }
+        }
+
+        scanner.close();
+    }
+}
