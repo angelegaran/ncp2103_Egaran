@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class IncomeTaxCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the monthly salary: ");
+        double monthlySalary = scanner.nextDouble();
+
+        double annualTaxableIncome = monthlySalary * 12;
+        double monthlyIncomeTax = calculateIncomeTax(annualTaxableIncome) / 12;
+
+        System.out.println("Monthly Income Tax: " + monthlyIncomeTax);
+
+        scanner.close();
+    }
+
+    public static double calculateIncomeTax(double annualTaxableIncome) {
+        if (annualTaxableIncome <= 250000) {
+            return 0;
+        } else if (annualTaxableIncome <= 400000) {
+            return (annualTaxableIncome - 250000) * 0.20;
+        } else if (annualTaxableIncome <= 800000) {
+            return 30000 + (annualTaxableIncome - 400000) * 0.25;
+        } else if (annualTaxableIncome <= 2000000) {
+            return 130000 + (annualTaxableIncome - 800000) * 0.30;
+        } else if (annualTaxableIncome <= 8000000) {
+            return 490000 + (annualTaxableIncome - 2000000) * 0.32;
+        } else {
+            return 2410000 + (annualTaxableIncome - 8000000) * 0.35;
+        }
+    }
+}
